@@ -1,4 +1,6 @@
 import asyncio
+import time
+
 import colorama
 from bs4 import BeautifulSoup
 import aiohttp
@@ -179,6 +181,9 @@ async def run_for_a_list_of_symbols(symbols: list):
             print(colorama.Fore.MAGENTA + f'info for ticker={symbols[idx]}:')
             print(colorama.Fore.YELLOW+f'{info}')
             print('-----------------------------------------------------------------')
+
+            if idx % 10 == 0 and idx != 0:
+                time.sleep(2)
 
         except aiohttp.client_exceptions.ClientPayloadError:
             print(colorama.Fore.RED+ f'tried but could not')
